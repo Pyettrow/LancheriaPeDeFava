@@ -6,7 +6,6 @@
 package View;
 
 import Model.*;
-import com.sun.xml.internal.ws.developer.JAXWSProperties;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -24,8 +23,8 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
      */
     public FrmConsultaPedido() {
         initComponents();
-        this.setModal(true);
-        this.setResizable(false);
+        //this.setModal(true);
+        //this.setResizable(false);
         atualizaListaPedido();
     }
 
@@ -38,17 +37,34 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPGeral = new javax.swing.JPanel();
+        jBFinalizarEntrega = new javax.swing.JButton();
+        jBAtualizarTela = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTPedidos = new javax.swing.JTable();
-        jBAtualizarTela = new javax.swing.JButton();
-        jBFinalizarEntrega = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTItensPedidos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Pedidos");
+
+        jBFinalizarEntrega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Verificado.png"))); // NOI18N
+        jBFinalizarEntrega.setText("Finalizar Entrega");
+        jBFinalizarEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFinalizarEntregaActionPerformed(evt);
+            }
+        });
+
+        jBAtualizarTela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Atualizar.png"))); // NOI18N
+        jBAtualizarTela.setText("Atualizar a Tela");
+        jBAtualizarTela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAtualizarTelaActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pedidos por Entregar"));
 
@@ -75,6 +91,8 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTPedidos.setMinimumSize(new java.awt.Dimension(90, 0));
+        jTPedidos.setPreferredSize(new java.awt.Dimension(220, 0));
         jTPedidos.getTableHeader().setReorderingAllowed(false);
         jTPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,29 +115,18 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jBAtualizarTela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Atualizar.png"))); // NOI18N
-        jBAtualizarTela.setText("Atualizar a Tela");
-        jBAtualizarTela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAtualizarTelaActionPerformed(evt);
-            }
-        });
-
-        jBFinalizarEntrega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Verificado.png"))); // NOI18N
-        jBFinalizarEntrega.setText("Finalizar Entrega");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Itens do Pedido Selecionado"));
 
@@ -166,15 +173,42 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(216, 216, 216))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        javax.swing.GroupLayout jPGeralLayout = new javax.swing.GroupLayout(jPGeral);
+        jPGeral.setLayout(jPGeralLayout);
+        jPGeralLayout.setHorizontalGroup(
+            jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPGeralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPGeralLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBFinalizarEntrega, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBAtualizarTela, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPGeralLayout.setVerticalGroup(
+            jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPGeralLayout.createSequentialGroup()
+                .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPGeralLayout.createSequentialGroup()
+                        .addComponent(jBAtualizarTela, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBFinalizarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,31 +217,15 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBAtualizarTela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBFinalizarEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPGeral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jBAtualizarTela, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBFinalizarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPGeral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -229,6 +247,25 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jTPedidosMouseClicked
 
+    private void jBFinalizarEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFinalizarEntregaActionPerformed
+        limpaTabelaListaItens();
+        
+        if(jTPedidos.getSelectedRow() >= 0){
+            
+            try {
+                
+                DAL.DAO dao = new DAL.DAO();
+                dao.diversos(2, (int) jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 0));
+                atualizaListaPedido();
+                
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(FrmConsultaPedido.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmConsultaPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jBFinalizarEntregaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,6 +274,7 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtualizarTela;
     private javax.swing.JButton jBFinalizarEntrega;
+    private javax.swing.JPanel jPGeral;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -249,13 +287,11 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
         limpaTabelaListaItens();
         DefaultTableModel jTable = (DefaultTableModel) jTPedidos.getModel();
         float sumTotalPedido = 0;
-        ArrayList<Pedido> lstPedidos;
+        ArrayList<Pedido> lstPedidos = new ArrayList();
         
-//        if(!lstPedidos.isEmpty()){
-//            for (int i = 0; i < lstPedidos.size(); i++) {
-//                lstPedidos.remove(i);
-//            }
-//        }
+        for (int i = 0; i < jTable.getRowCount(); i++) {
+            jTable.removeRow(0);
+        }
         
         /*Limpando a tabela dos pedidos*/
         for (int i = 0; i < jTable.getRowCount(); i++) {
@@ -270,7 +306,7 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
             
             if(!lstPedidos.isEmpty()){
                 for (int i = 0; i < lstPedidos.size(); i++) {
-                    sumTotalPedido = dao.consultas(1, lstPedidos.get(i).getIdPedido());
+                    sumTotalPedido = dao.diversos(1, lstPedidos.get(i).getIdPedido());
                     Cliente cli = dao.consultaCliente(lstPedidos.get(i).getCliente_idCliente());
                     Object[] add = {lstPedidos.get(i).getIdPedido(), cli.getNomeCliente(), lstPedidos.get(i).getData(), "R$"+sumTotalPedido};
                     jTable.addRow(add);

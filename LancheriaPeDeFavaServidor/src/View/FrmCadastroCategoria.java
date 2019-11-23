@@ -27,7 +27,7 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
     public FrmCadastroCategoria() {
         initComponents();
         this.setModal(true);
-        this.setResizable(false);
+        //this.setResizable(false);
         jTFNomeCategoria.setEditable(false);
         jBCancelar.setVisible(false);
     }
@@ -96,6 +96,7 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
             }
         });
 
+        jBCancelar.setMnemonic('c');
         jBCancelar.setText("Cancelar");
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,10 +132,10 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
                                     .addComponent(jLabel2))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jBCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +154,7 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTFNomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBCancelar))
         );
 
@@ -163,12 +164,12 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -197,6 +198,8 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
                     jLCodigoCategoria.setText("");
                     jTFNomeCategoria.setText("");
                     jTFNomeCategoria.setEditable(false);
+                    novoRegistroHabilitado = false;
+                    jBCancelar.setVisible(false);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(FrmCadastroCategoria.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
@@ -214,6 +217,10 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
                 jLCodigoCategoria.setText(ultimoRegistro);
                 jTFNomeCategoria.setEditable(true);
                 jTFNomeCategoria.requestFocus();
+                
+                jBAlterar.setEnabled(false);
+                jBExcluir.setEnabled(false);
+                jBPesquisar.setEnabled(false);
                 
                 novoRegistroHabilitado = true;
                 
@@ -268,6 +275,9 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
         }else{
             if(!jTFNomeCategoria.getText().isEmpty()){
                 jTFNomeCategoria.setEditable(true);
+                jBAdd.setEnabled(false);
+                jBExcluir.setEnabled(false);
+                jBPesquisar.setEnabled(false);
                 alterandoRegistrosHabilitado = true;
             }else{
                 JOptionPane.showMessageDialog(null, "Necessário escolher um registro para alterar");
@@ -292,10 +302,15 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
                 
                 jLCodigoCategoria.setText("");
                 jTFNomeCategoria.setText("");
+                jBCancelar.setVisible(false);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(FrmCadastroCategoria.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(FrmCadastroCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                if(String.valueOf(ex).contains("Cannot delete or update a parent row")){
+                    JOptionPane.showMessageDialog(null, "Produto possui vinculo.\nNão é possivel realizar sua exclusão!");
+                }else{
+                    Logger.getLogger(FrmCadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }else{
             JOptionPane.showMessageDialog(null, "Escolha um registro para a exclusão!");
@@ -303,6 +318,10 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
     }//GEN-LAST:event_jBExcluirActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        jBAdd.setEnabled(true);
+        jBAlterar.setEnabled(true);
+        jBExcluir.setEnabled(true);
+        jBPesquisar.setEnabled(true);
         jLCodigoCategoria.setText("");
         jTFNomeCategoria.setText("");
         jBCancelar.setVisible(false);

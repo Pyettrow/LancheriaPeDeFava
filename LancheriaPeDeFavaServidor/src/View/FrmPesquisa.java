@@ -45,17 +45,17 @@ public class FrmPesquisa extends javax.swing.JDialog {
             this.setModal(true);
             DefaultListModel dlm = new DefaultListModel();
             
-            DAL.DAO<Categoria> consultaRegistros = new DAL.DAO<Categoria>();
+            DAL.DAO dao = new DAL.DAO<Categoria>();
             
             if(tela == 1){
-                ArrayList<Categoria> lstCategorias = consultaRegistros.todosRegistros(Categoria.class, 0);
+                ArrayList<Categoria> lstCategorias = dao.todosRegistros(Categoria.class, 0);
                 if(!lstCategorias.isEmpty()){
                     for (int i = 0; i < lstCategorias.size(); i++) {
                         dlm.add(i, lstCategorias.get(i).getIdCategoria()+"-"+lstCategorias.get(i).getDescricao());
                     }
                 }
             }else if(tela == 2){
-                ArrayList<Produto> lstProduto = consultaRegistros.todosRegistros(Produto.class, 0);
+                ArrayList<Produto> lstProduto = dao.todosRegistros(Produto.class, 0);
                 if(!lstProduto.isEmpty()){
                     for (int j = 0; j < lstProduto.size(); j++) {
                         dlm.add(j, lstProduto.get(j).getIdProduto()+"-"+lstProduto.get(j).getDescricao());
@@ -125,14 +125,16 @@ public class FrmPesquisa extends javax.swing.JDialog {
         String selecionado = String.valueOf(dlm);
         selecionado = selecionado.substring(1, (selecionado.length()-1));
        
-        if(tela == 1){
-            String[] vet = selecionado.split("-");
-            idRegistro = Integer.parseInt(vet[0]);
-            nomeRegistro = vet[1];
-        }else{
-            String[] vet = selecionado.split("-");
-            idProduto = Integer.parseInt(vet[0]);
-        }    
+        if(!selecionado.equals("null")){
+            if(tela == 1){
+                    String[] vet = selecionado.split("-");
+                    idRegistro = Integer.parseInt(vet[0]);
+                    nomeRegistro = vet[1];
+            }else{
+                String[] vet = selecionado.split("-");
+                idProduto = Integer.parseInt(vet[0]);
+            }    
+        }
         dispose();
     }//GEN-LAST:event_jBOkActionPerformed
 

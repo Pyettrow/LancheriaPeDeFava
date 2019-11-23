@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.BotThread;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -33,95 +34,102 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLImagemFundo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLStatusConexao = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMStatusConexao = new javax.swing.JMenu();
+        jMCadastro = new javax.swing.JMenu();
+        jMICadastroProduto = new javax.swing.JMenuItem();
+        jMICadastroCategoria = new javax.swing.JMenuItem();
+        jMISair = new javax.swing.JMenuItem();
+        jMManutencao = new javax.swing.JMenu();
+        jMIManutencaoPedido = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lancheria Pé de Fava");
 
-        jLImagemFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/ImagemPrincipal.png"))); // NOI18N
+        jLImagemFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/ImagemPrincipalComLogo.png"))); // NOI18N
 
-        jButton1.setText("Gerencia Produtos");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jMStatusConexao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Desconectado.png"))); // NOI18N
+        jMenuBar1.add(jMStatusConexao);
+
+        jMCadastro.setText("Cadastro");
+
+        jMICadastroProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, 0));
+        jMICadastroProduto.setText("Cadastro de Produto");
+        jMICadastroProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jMICadastroProdutoActionPerformed(evt);
             }
         });
+        jMCadastro.add(jMICadastroProduto);
 
-        jButton2.setText("Cadastro de Produto");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jMICadastroCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, 0));
+        jMICadastroCategoria.setText("Cadastro de Categoria");
+        jMICadastroCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jMICadastroCategoriaActionPerformed(evt);
             }
         });
+        jMCadastro.add(jMICadastroCategoria);
 
-        jButton3.setText("Cadastro de Categorias");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jMISair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, 0));
+        jMISair.setText("Sair");
+        jMISair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jMISairActionPerformed(evt);
             }
         });
+        jMCadastro.add(jMISair);
 
-        jLStatusConexao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Desconectado.png"))); // NOI18N
-        jLStatusConexao.setToolTipText("Desconectado!");
+        jMenuBar1.add(jMCadastro);
+
+        jMManutencao.setText("Manutenção");
+
+        jMIManutencaoPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, 0));
+        jMIManutencaoPedido.setText("Manutenção Pedidos");
+        jMIManutencaoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIManutencaoPedidoActionPerformed(evt);
+            }
+        });
+        jMManutencao.add(jMIManutencaoPedido);
+
+        jMenuBar1.add(jMManutencao);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLImagemFundo)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLStatusConexao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(jLImagemFundo)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLImagemFundo)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLStatusConexao, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+            .addComponent(jLImagemFundo)
         );
-
-        jLStatusConexao.getAccessibleContext().setAccessibleDescription("");
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FrmConsultaPedido frm = new FrmConsultaPedido();
-        frm.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        FrmCadastroProduto frm = new FrmCadastroProduto();
-        frm.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jMICadastroCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastroCategoriaActionPerformed
         FrmCadastroCategoria frm = new FrmCadastroCategoria();
         frm.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jMICadastroCategoriaActionPerformed
+
+    private void jMICadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastroProdutoActionPerformed
+        FrmCadastroProduto frm = new FrmCadastroProduto();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMICadastroProdutoActionPerformed
+
+    private void jMISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISairActionPerformed
+        dispose();
+    }//GEN-LAST:event_jMISairActionPerformed
+
+    private void jMIManutencaoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIManutencaoPedidoActionPerformed
+        FrmConsultaPedido frm = new FrmConsultaPedido();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMIManutencaoPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,8 +169,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
             DAL.Conexao conec = new DAL.Conexao();
             if(conec.testaConexao() == true){
                 ImageIcon img = new ImageIcon("build\\classes\\View\\imagens\\Conectado.png");
-                jLStatusConexao.setToolTipText("Conectado!");
-                jLStatusConexao.setIcon(img);
+                jMStatusConexao.setToolTipText("Conectado!");                
+                jMStatusConexao.setIcon(img);
+                Thread th = new BotThread();
+                th.start();
             }
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Problema na conexão no banco de dados");
@@ -173,10 +183,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLImagemFundo;
-    private static javax.swing.JLabel jLStatusConexao;
+    private javax.swing.JMenu jMCadastro;
+    private javax.swing.JMenuItem jMICadastroCategoria;
+    private javax.swing.JMenuItem jMICadastroProduto;
+    private javax.swing.JMenuItem jMIManutencaoPedido;
+    private javax.swing.JMenuItem jMISair;
+    private javax.swing.JMenu jMManutencao;
+    private static javax.swing.JMenu jMStatusConexao;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

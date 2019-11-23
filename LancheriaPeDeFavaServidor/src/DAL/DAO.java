@@ -22,6 +22,12 @@ public class DAO<T> {
         con = c.getConexao();
     }
     
+    /**
+     * Recebe um objeto para poder diferencia em qual tabela ira inserir, com 
+     * base nisso realizara a inserção na categoria ou no produto
+     * @param obj
+     * @throws SQLException 
+     */
     public void insertRegistro(Object obj) throws SQLException{
         Statement st = con.createStatement();
         
@@ -45,7 +51,7 @@ public class DAO<T> {
     }
     
     /**
-     * Consulta todos os registros de uma certa classe, porém para o PedidoItem
+     * Consulta todos os registros de uma certa tabela, porém para o PedidoItem
      * era necessário realizar a consulta tendo com resultado somentes os itens 
      * do pedido passado
      * Classe - Enviar a classe para realizar a constula(Pedido.class)
@@ -56,19 +62,16 @@ public class DAO<T> {
      * @return
      * @throws SQLException 
      */
-    public ArrayList todosRegistros(Class classe, int pedido) throws SQLException{
+    public ArrayList<T> todosRegistros(Class classe, int pedido) throws SQLException{
         Statement st = con.createStatement();
         ResultSet rs;
         
         String queryConsulta = "SELECT * FROM";
         
-        ArrayList<Categoria> lstCategoria = new ArrayList();
-        ArrayList<Produto> lstProduto = new ArrayList();
-        ArrayList<Pedido> lstPedido = new ArrayList();
-        ArrayList<PedidoItem> lstPedidoItem = new ArrayList();
+        ArrayList<T> lstRegistros = new ArrayList();
         
         if(classe == Categoria.class){
-            lstCategoria = new ArrayList();
+            lstRegistros = new ArrayList();
             queryConsulta += " categoria";
             rs = st.executeQuery(queryConsulta);
             
@@ -76,10 +79,10 @@ public class DAO<T> {
                 Categoria newCat = new Categoria();
                 newCat.setIdCategoria(rs.getInt("idCategoria"));
                 newCat.setDescricao(rs.getString("Descricao"));
-                lstCategoria.add(newCat);
+                lstRegistros.add((T) newCat);
             }            
             
-            return lstCategoria;
+            return lstRegistros;
         }else if(classe == Produto.class){
             queryConsulta += " produto";
             rs = st.executeQuery(queryConsulta);
@@ -90,12 +93,12 @@ public class DAO<T> {
                 newProduto.setDescricao(rs.getString("Descricao"));
                 newProduto.setPreco(rs.getDouble("Preco"));
                 newProduto.setCategoria_idCategoria(rs.getInt("Categoria_idCategoria"));
-                lstProduto.add(newProduto);
+                lstRegistros.add((T)newProduto);
             }            
             
-            return lstProduto;
+            return lstRegistros;
         }else if(classe == Pedido.class){
-            queryConsulta += " pedido WHERE finalizado <> 1";
+            queryConsulta += " pedido WHERE entregue = 0 and finalizado = 1";
             rs = st.executeQuery(queryConsulta);
                     
             while (rs.next()){
@@ -105,10 +108,10 @@ public class DAO<T> {
                 ped.setFinalizado(rs.getInt("Finalizado"));
                 ped.setEntregue(rs.getInt("Entregue"));
                 ped.setCliente_idCliente(rs.getInt("Cliente_idCliente"));
-                lstPedido.add(ped);
+                lstRegistros.add((T)ped);
             }
             
-            return lstPedido;
+            return lstRegistros;
         }else if(classe == PedidoItem.class){
             queryConsulta += " pedidoitem WHERE Pedido_idPedido = "+pedido;
             rs = st.executeQuery(queryConsulta);
@@ -120,9 +123,9 @@ public class DAO<T> {
                 pedItem.setQuantidade(rs.getInt("Quantidade"));
                 pedItem.setPreco(rs.getDouble("Preco"));
                 pedItem.setObservacao(rs.getString("Observacao"));
-                lstPedidoItem.add(pedItem);
+                lstRegistros.add((T)pedItem);
             }
-            return lstPedidoItem;
+            return lstRegistros;
         }else{
             JOptionPane.showMessageDialog(null, "Sem tratamento para essa classe");
             return null;
@@ -175,6 +178,13 @@ public class DAO<T> {
         return String.valueOf(ultimoRegistro);
     }
     
+    /**
+     * Serve para realizar a alterações em registros especificos, é necessário 
+     * ter o objeto alterado passado e com isso sera feito o update no banco.
+     * Atualmente existe para a CATEGORIA e PRODUTO
+     * @param obj
+     * @throws SQLException 
+     */
     public void alterarRegistro(Object obj) throws SQLException{
         Statement st = con.createStatement();
         
@@ -199,10 +209,9 @@ public class DAO<T> {
     }
     
     /**
-     * Tentativa de criar uma metodo Generico, porem estou com problema em passar 
-     * um objeto da classe produto, com isso estou passando um int OPCAO.
-     * 1 - Categoria
-     * 2 - Produto
+     * Serve para realizar a exclusão de um registro especifico, estou com 
+     * problemas para realziar a exlcusão do produto em modo generico, então 
+     * para apagar um produto no local do OBJ é necessário passar o id do produto
      * @param opcao
      * @param obj
      * @throws SQLException 
@@ -230,16 +239,16 @@ public class DAO<T> {
     
     /**
      * Metodo para realizar a consulta com base no objeto que foi passado
-     * tentei fazer de moto generico, porém estou com dúvidas no tipo de variavel
+     * tentei fazer de modo generico, porém estou com dúvidas no tipo de variavel
      * que tenho que retornar, coloquei "Produto" para quebrar o galho
-     * @param cod    
+     * @param codProd
      * @return
      * @throws SQLException 
      */
-    public Produto consultaProduto(int cod) throws SQLException{
+    public Produto consultaProduto(int codProd) throws SQLException{
         Statement st = con.createStatement();
         
-        String queryConsulta = "SELECT * FROM produto WHERE idProduto = "+cod;
+        String queryConsulta = "SELECT * FROM produto WHERE idProduto = "+codProd;
         ResultSet rs = st.executeQuery(queryConsulta);
 
         if(rs != null && rs.next()){
@@ -250,15 +259,21 @@ public class DAO<T> {
             prod.setCategoria_idCategoria(rs.getInt("Categoria_idCategoria"));
             return prod;
         }else{
-            JOptionPane.showMessageDialog(null, "Consulta do produto veio vazia");
             return null;
         }
     }
     
-    public Cliente consultaCliente(int id) throws SQLException{
+    /**
+     * Será usado no Bot, serve para verificar se o cliente existe atravez de 
+     * um select realizado com o where do ID do cliente(ID = id do telegran)
+     * @param idTelegran
+     * @return
+     * @throws SQLException 
+     */
+    public Cliente consultaCliente(int idTelegran) throws SQLException{
         Statement st = con.createStatement();
         
-        String queryConsulta = "SELECT * FROM cliente WHERE idCliente = "+id;
+        String queryConsulta = "SELECT * FROM cliente WHERE idCliente = "+idTelegran;
         ResultSet rs = st.executeQuery(queryConsulta);
 
         if(rs != null && rs.next()){
@@ -273,13 +288,16 @@ public class DAO<T> {
     }
     /**
      * Consultas no geral, não estava achando um metodo que iria caber para essas
-     * consultas
-     * cod1 - Serve para validar nos IF's qual consulta seria realizada
-     * cod2 - Manda a PK para poder fazer a consulta com base nela
+     * consultas. Com opção 1 irá realizara consulta no pedidoItem para retornar
+     * o preço total de um pedido especifico.
+     * cod1: Serve para validar nos IF's qual consulta seria realizada
+     * cod1 = 1(Select que retornar o preço total de um pedido)
+     * cod1 = 2(Ira alterar o pedido para entregue = 1)
+     * cod2 - Manda a PK para poder fazer a operação necessária
      * @param cod1
      * @param cod2
      */
-    public float consultas(int cod1, int cod2) throws SQLException{
+    public float diversos(int cod1, int cod2) throws SQLException{
         Statement st = con.createStatement();
         
         if(cod1 == 1){
@@ -291,6 +309,10 @@ public class DAO<T> {
             }else{
                 return 0;
             }
+        }else if(cod1 == 2){
+            String query = "UPDATE pedido SET entregue = 1 WHERE idPedido = "+cod2;
+            st.executeUpdate(query);
+            return 0;
         }else{
             JOptionPane.showMessageDialog(null, "Sem tratamento para essa opção!");
             return 0;

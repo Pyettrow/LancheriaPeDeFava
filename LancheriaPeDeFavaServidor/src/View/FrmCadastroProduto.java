@@ -27,7 +27,6 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
     public FrmCadastroProduto() {
         initComponents();
         this.setModal(true);
-        this.setResizable(false);
         limpaCampos();
         preencheComboBox(0);
         jBCancelar.setVisible(false);
@@ -125,6 +124,23 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel2)
+                        .addGap(1, 1, 1)
+                        .addComponent(jFTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jLCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFNomeProduto)
+                    .addComponent(jCBCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jBAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,28 +152,9 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTFNomeProduto)
-                                .addComponent(jCBCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(4, 4, 4)
-                                    .addComponent(jLabel2)
-                                    .addGap(1, 1, 1)
-                                    .addComponent(jFTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(jLCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jBCancelar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jBCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,21 +167,21 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                     .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLCodigoProduto))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLCodigoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTFNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTFNomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jCBCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCBCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2))
+                    .addComponent(jFTFPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jBCancelar))
+                .addComponent(jBCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,7 +190,7 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -227,7 +224,9 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                             
                             novoRegistroProd.insertRegistro(newProduto);
                             
-                           limpaCampos();
+                            jBCancelar.setVisible(false);
+                            adicionarRegistroHabilitado = false;
+                            limpaCampos();
                         }else{
                             JOptionPane.showMessageDialog(null, "Informe um preço para o produto!");
                             jFTFPreco.requestFocus();
@@ -249,9 +248,10 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 jTFNomeProduto.setEditable(true);
                 jCBCategoria.setEnabled(true);
                 jFTFPreco.setEditable(true);
-                
+                jBAlterar.setEnabled(false);
+                jBExcluir.setEnabled(false);
+                jBPesquisar.setEnabled(false);
                 jBCancelar.setVisible(true);
-                
                 adicionarRegistroHabilitado = true;
             }
         } catch (ClassNotFoundException ex) {
@@ -273,10 +273,10 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 String[] codigoDaCategoria = selecionado.split("-");
                 alterarProd.setCategoria_idCategoria(Integer.parseInt(codigoDaCategoria[0]));
                 alterarProd.setPreco(Double.parseDouble(jFTFPreco.getText().replaceAll(",", ".")));
-                JOptionPane.showMessageDialog(null, "PReco: "+alterarProd.getPreco());
                 dao.alterarRegistro(alterarProd);
                  
                 limpaCampos();
+                jBCancelar.setVisible(false);
                 
                 alteraRegistroHabilitado = false;
             } catch (ClassNotFoundException ex) {
@@ -289,6 +289,10 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 jTFNomeProduto.setEditable(true);
                 jCBCategoria.setEnabled(true);
                 jFTFPreco.setEditable(true);
+                jBAdd.setEnabled(false);
+                jBExcluir.setEnabled(false);
+                jBPesquisar.setEnabled(false);
+                jBCancelar.setVisible(true);
                 alteraRegistroHabilitado = true;
             }else{
                 JOptionPane.showMessageDialog(null, "Escolha um produto para alterar!");
@@ -311,6 +315,7 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 jFTFPreco.setText(String.valueOf(prod.getPreco()));
                 jBCancelar.setVisible(true);
             }
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(FrmCadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -326,11 +331,17 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 dao.excluirRegistro(2, jLCodigoProduto.getText());
                 
                 limpaCampos();
+                jBCancelar.setVisible(false);
                 
             } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, ex);
                 Logger.getLogger(FrmCadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(FrmCadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
+                if(String.valueOf(ex).contains("Cannot delete or update a parent row")){
+                    JOptionPane.showMessageDialog(null, "Produto possui vinculo.\nNão é possivel realizar sua exclusão!");
+                }else{
+                    Logger.getLogger(FrmCadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }else{
             JOptionPane.showMessageDialog(null, "Escolha um registro para exlcusão!");
@@ -339,6 +350,10 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
         limpaCampos();
+        jBAdd.setEnabled(true);
+        jBAlterar.setEnabled(true);
+        jBExcluir.setEnabled(true);
+        jBPesquisar.setEnabled(true);
         jBCancelar.setVisible(false);
         adicionarRegistroHabilitado = false;
     }//GEN-LAST:event_jBCancelarActionPerformed
@@ -389,9 +404,9 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
         int indexParaSelecionar = 0;
         try {
             
-            DAL.DAO<Produto> novoRegistroProd = new DAL.DAO();
+            DAL.DAO dao = new DAL.DAO();
             
-            ArrayList<Categoria> lstCategoria = novoRegistroProd.todosRegistros(Categoria.class, 0);
+            ArrayList<Categoria> lstCategoria = dao.todosRegistros(Categoria.class, 0);
             
             for (int i = 0; i < lstCategoria.size(); i++) {
                 if(i == 0){
