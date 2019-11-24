@@ -43,6 +43,10 @@ public class DAO<T> {
             double novoPreco = pro.getCategoria_idCategoria();
             queryInsert += " produto (descricao, preco, Categoria_idCategoria) VALUES ('"+pro.getDescricao()+"',"+pro.getPreco()+", "+pro.getCategoria_idCategoria()+")";
             st.execute(queryInsert);
+        }else if(obj instanceof Cliente){
+            Cliente novoCli = (Cliente) obj;
+            String query = "INSERT INTO cliente (`idCliente`, `Nome`) VALUES ("+novoCli.getIdCliente()+", '"+novoCli.getNomeCliente()+"')";
+            st.execute(query);
         }else{
             JOptionPane.showMessageDialog(null, "Falta tratar essa classe!");
         }
@@ -286,6 +290,7 @@ public class DAO<T> {
             return null;
         }
     }
+    
     /**
      * Consultas no geral, não estava achando um metodo que iria caber para essas
      * consultas. Com opção 1 irá realizara consulta no pedidoItem para retornar

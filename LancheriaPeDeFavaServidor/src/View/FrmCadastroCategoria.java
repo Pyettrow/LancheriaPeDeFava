@@ -7,6 +7,7 @@ package View;
 
 import DAL.DAO;
 import Model.Categoria;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,9 +28,7 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
     public FrmCadastroCategoria() {
         initComponents();
         this.setModal(true);
-        //this.setResizable(false);
-        jTFNomeCategoria.setEditable(false);
-        jBCancelar.setVisible(false);
+        desativaTelaLimpaCampos();
     }
 
     /**
@@ -46,12 +45,12 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLCodigoCategoria = new javax.swing.JLabel();
-        jTFNomeCategoria = new javax.swing.JTextField();
         jBPesquisar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
         jBAlterar = new javax.swing.JButton();
         jBAdd = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
+        jTFNomeCategoria = new javax.swing.JTextField();
 
         jButton5.setText("jButton5");
 
@@ -61,8 +60,13 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Categoria"));
 
         jLabel1.setText("Código:");
+        jLabel1.setToolTipText("Código da Categoria");
 
         jLabel2.setText("Nome:");
+        jLabel2.setToolTipText("Nome da Categoria");
+
+        jLCodigoCategoria.setText("1");
+        jLCodigoCategoria.setToolTipText("Código da Categoria");
 
         jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Pesquisar.png"))); // NOI18N
         jBPesquisar.setToolTipText("Pesquisar Registro");
@@ -95,12 +99,25 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
                 jBAddActionPerformed(evt);
             }
         });
+        jBAdd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jBAddKeyPressed(evt);
+            }
+        });
 
-        jBCancelar.setMnemonic('c');
+        jBCancelar.setMnemonic('C');
         jBCancelar.setText("Cancelar");
+        jBCancelar.setToolTipText("Cancelar operação");
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCancelarActionPerformed(evt);
+            }
+        });
+
+        jTFNomeCategoria.setToolTipText("Nome da Categoria");
+        jTFNomeCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFNomeCategoriaKeyPressed(evt);
             }
         });
 
@@ -109,53 +126,53 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 10, Short.MAX_VALUE)
-                        .addComponent(jBAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(10, 10, 10)
+                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(163, 163, 163))
                             .addComponent(jTFNomeCategoria)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLCodigoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLCodigoCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(122, 122, 122)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLCodigoCategoria))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLCodigoCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTFNomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBCancelar))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTFNomeCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,7 +182,7 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,50 +203,7 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
      * @param evt 
      */
     private void jBAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddActionPerformed
-        if(novoRegistroHabilitado == true){
-            if(!jTFNomeCategoria.getText().equals("")){
-                try {
-                    Categoria novaCat = new Categoria();
-                    novaCat.setDescricao(jTFNomeCategoria.getText());
-
-                    DAO<Categoria> cat = new DAO<Categoria>();
-                    cat.insertRegistro(novaCat);
-                    
-                    jLCodigoCategoria.setText("");
-                    jTFNomeCategoria.setText("");
-                    jTFNomeCategoria.setEditable(false);
-                    novoRegistroHabilitado = false;
-                    jBCancelar.setVisible(false);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(FrmCadastroCategoria.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(FrmCadastroCategoria.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }else{
-                JOptionPane.showMessageDialog(this, "Informe um nome para categoria!");
-                jTFNomeCategoria.requestFocus();
-            }
-        }else{
-            try {
-                jBCancelar.setVisible(true);
-                DAO<Categoria> cat = new DAO<Categoria>();
-                String ultimoRegistro = cat.ultimoRegistro(Categoria.class);
-                jLCodigoCategoria.setText(ultimoRegistro);
-                jTFNomeCategoria.setEditable(true);
-                jTFNomeCategoria.requestFocus();
-                
-                jBAlterar.setEnabled(false);
-                jBExcluir.setEnabled(false);
-                jBPesquisar.setEnabled(false);
-                
-                novoRegistroHabilitado = true;
-                
-            } catch (ClassNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, "Problema com comando FrmCadastroCategoria:\n"+ex);
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Problema com comando FrmCadastroCategoria:\n"+ex);
-            }
-        }
+        botaoAdd();
     }//GEN-LAST:event_jBAddActionPerformed
 
     /**
@@ -249,8 +223,9 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     /**
-     * Botão Alterar: Se habilitado irá alterar o registro no banco de dados com 
-     * base no que foi escrito no jTFNomeCategoria
+     * Botão Alterar: Se alterandoRegistrosHabilitado == true irá alterar o 
+     * registro no banco de dados com base no que foi escrito no jTFNomeCategoria
+     * senão ira dar aviso
      * @param evt 
      */
     private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
@@ -286,7 +261,8 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
     }//GEN-LAST:event_jBAlterarActionPerformed
 
     /**
-     * Irá excluir o registro com base no jTFNomeCategoria e jLCodigoCategoria 
+     * Tratamento do botão para excluir o registro com base no jTFNomeCategoria 
+     * e jLCodigoCategoria 
      * @param evt 
      */
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
@@ -317,17 +293,41 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jBExcluirActionPerformed
 
+    /**
+     * Botão de limpar os campos e para qualquer alteraçao/inserção
+     * @param evt 
+     */
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        jBAdd.setEnabled(true);
-        jBAlterar.setEnabled(true);
-        jBExcluir.setEnabled(true);
-        jBPesquisar.setEnabled(true);
-        jLCodigoCategoria.setText("");
-        jTFNomeCategoria.setText("");
-        jBCancelar.setVisible(false);
-        alterandoRegistrosHabilitado = false;
-        novoRegistroHabilitado = false;
+        desativaTelaLimpaCampos();
     }//GEN-LAST:event_jBCancelarActionPerformed
+
+    /**
+     * Tratando as teclas "CTRL + I" para habilitar o modo de inclusão de uma 
+     * categoria
+     * @param evt 
+     */
+    private void jBAddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBAddKeyPressed
+        if(evt.isControlDown() == true){
+            if(evt.getKeyCode() == KeyEvent.VK_I){
+                botaoAdd();
+            }
+        }
+    }//GEN-LAST:event_jBAddKeyPressed
+
+    /**
+     * Tratando as telcas "CTRL + S" para quando prestes a inserir registro e 
+     * chama função para inserção
+     * @param evt 
+     */
+    private void jTFNomeCategoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNomeCategoriaKeyPressed
+        if(novoRegistroHabilitado == true && alterandoRegistrosHabilitado == false){
+            if(evt.isControlDown() == true){
+                if(evt.getKeyCode() == KeyEvent.VK_S){
+                    botaoAdd();
+                }
+            }
+        }
+    }//GEN-LAST:event_jTFNomeCategoriaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -346,4 +346,70 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTFNomeCategoria;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Função para poder limpar os campos da tela e habilitar os botões novamente
+     */
+    public void desativaTelaLimpaCampos(){
+        jBAdd.setEnabled(true);
+        jBAlterar.setEnabled(true);
+        jBExcluir.setEnabled(true);
+        jBPesquisar.setEnabled(true);
+        jLCodigoCategoria.setText("");
+        jTFNomeCategoria.setText("");
+        jTFNomeCategoria.setEditable(false);
+        jBCancelar.setVisible(false);
+        alterandoRegistrosHabilitado = false;
+        novoRegistroHabilitado = false;
+    }
+    
+    /**
+     * Botão Adcionar: Se variavel novoRegistroHabilitado == false irá habilitar 
+     * o jTFNomeCategoria para cadastrar a categoria e irá pegar o novo codigo 
+     * para o novo cadastro com base no ultimo registro add mais um. Se igual a 
+     * true ira chamar o metodo para inserir o registro no banco
+     */
+    public void botaoAdd(){
+        if(novoRegistroHabilitado == true){
+            if(!jTFNomeCategoria.getText().equals("")){
+                try {
+                    Categoria novaCat = new Categoria();
+                    novaCat.setDescricao(jTFNomeCategoria.getText());
+
+                    DAO<Categoria> cat = new DAO<Categoria>();
+                    cat.insertRegistro(novaCat);
+                    
+                    desativaTelaLimpaCampos();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(FrmCadastroCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FrmCadastroCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Informe um nome para categoria!");
+                jTFNomeCategoria.requestFocus();
+            }
+        }else{
+            try {
+                jBCancelar.setVisible(true);
+                DAO<Categoria> cat = new DAO<Categoria>();
+                String ultimoRegistro = cat.ultimoRegistro(Categoria.class);
+                jLCodigoCategoria.setText(ultimoRegistro);
+                jTFNomeCategoria.setEditable(true);
+                jTFNomeCategoria.requestFocus();
+                
+                jBAlterar.setEnabled(false);
+                jBExcluir.setEnabled(false);
+                jBPesquisar.setEnabled(false);
+                
+                novoRegistroHabilitado = true;
+                
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Problema com comando FrmCadastroCategoria:\n"+ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Problema com comando FrmCadastroCategoria:\n"+ex);
+            }
+        }
+    }
+    
 }

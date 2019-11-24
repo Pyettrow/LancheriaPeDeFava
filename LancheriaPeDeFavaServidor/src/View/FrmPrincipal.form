@@ -9,6 +9,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/View/imagens/Desconectado.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Desconectado!"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
@@ -25,6 +26,7 @@
                   <KeyStroke key="P"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cadastro de Produto"/>
+                <Property name="toolTipText" type="java.lang.String" value="Cadastrar um Produto"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadastroProdutoActionPerformed"/>
@@ -36,6 +38,7 @@
                   <KeyStroke key="C"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cadastro de Categoria"/>
+                <Property name="toolTipText" type="java.lang.String" value="Cadastrar uma Categoria"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadastroCategoriaActionPerformed"/>
@@ -47,6 +50,7 @@
                   <KeyStroke key="S"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
+                <Property name="toolTipText" type="java.lang.String" value="Fechar programa"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMISairActionPerformed"/>
@@ -65,6 +69,7 @@
                   <KeyStroke key="M"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Manuten&#xe7;&#xe3;o Pedidos"/>
+                <Property name="toolTipText" type="java.lang.String" value="Visualizar pedidos em aberto"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIManutencaoPedidoActionPerformed"/>

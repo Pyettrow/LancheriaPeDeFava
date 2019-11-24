@@ -67,44 +67,50 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jBCancelar" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jBAdd" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jBAlterar" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jBExcluir" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jBPesquisar" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel3" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel4" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          <Component id="jFTFPreco" min="-2" pref="89" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" pref="99" max="32767" attributes="0"/>
+                                          <EmptySpace min="107" pref="107" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel1" alignment="0" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel4" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jFTFPreco" min="-2" pref="131" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel1" max="32767" attributes="0"/>
+                                          <EmptySpace min="105" pref="105" max="-2" attributes="0"/>
+                                      </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                                          <Component id="jLCodigoProduto" min="-2" pref="76" max="-2" attributes="0"/>
+                                          <Component id="jLCodigoProduto" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jCBCategoria" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jTFNomeProduto" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jBAdd" pref="35" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBAlterar" pref="35" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBExcluir" pref="35" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBPesquisar" pref="38" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -115,31 +121,36 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jBAlterar" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jBExcluir" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jBAdd" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jBPesquisar" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" max="-2" attributes="0"/>
-                      <Component id="jLCodigoProduto" alignment="3" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jLCodigoProduto" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel3" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTFNomeProduto" min="-2" pref="25" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jCBCategoria" min="-2" pref="25" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" pref="22" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="jTFNomeProduto" pref="25" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCBCategoria" pref="35" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jFTFPreco" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="3" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" max="-2" attributes="0"/>
+                      <Group type="102" alignment="3" attributes="0">
+                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel4" alignment="3" max="32767" attributes="0"/>
+                              <Component id="jLabel2" alignment="3" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="jFTFPreco" alignment="3" pref="25" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="jBCancelar" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -149,19 +160,25 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
+            <Property name="toolTipText" type="java.lang.String" value="C&#xf3;digo do Produto"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nome:"/>
+            <Property name="toolTipText" type="java.lang.String" value="Nome do Produto"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pre&#xe7;o:"/>
+            <Property name="toolTipText" type="java.lang.String" value="Pre&#xe7;o do Produto"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNomeProduto">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Nome do Produto"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jCBCategoria">
           <Properties>
@@ -170,11 +187,13 @@
                 <StringItem index="0" value="Categoria"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Categoria  do Produto"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLCodigoProduto">
           <Properties>
             <Property name="text" type="java.lang.String" value="1"/>
+            <Property name="toolTipText" type="java.lang.String" value="C&#xf3;digo do Produto"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jFTFPreco">
@@ -182,7 +201,11 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="#,##0.00" subtype="-1" type="0"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Pre&#xe7;o do Produto"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jFTFPrecoKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBPesquisar">
           <Properties>
@@ -226,16 +249,20 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAddActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jBAddKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="R$"/>
+            <Property name="toolTipText" type="java.lang.String" value="Pre&#xe7;o do Produto"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jBCancelar">
           <Properties>
+            <Property name="mnemonic" type="int" value="67"/>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cancelar Opera&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCancelarActionPerformed"/>

@@ -49,12 +49,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLImagemFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/ImagemPrincipalComLogo.png"))); // NOI18N
 
         jMStatusConexao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Desconectado.png"))); // NOI18N
+        jMStatusConexao.setToolTipText("Desconectado!");
         jMenuBar1.add(jMStatusConexao);
 
         jMCadastro.setText("Cadastro");
 
         jMICadastroProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, 0));
         jMICadastroProduto.setText("Cadastro de Produto");
+        jMICadastroProduto.setToolTipText("Cadastrar um Produto");
         jMICadastroProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMICadastroProdutoActionPerformed(evt);
@@ -64,6 +66,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMICadastroCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, 0));
         jMICadastroCategoria.setText("Cadastro de Categoria");
+        jMICadastroCategoria.setToolTipText("Cadastrar uma Categoria");
         jMICadastroCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMICadastroCategoriaActionPerformed(evt);
@@ -73,6 +76,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMISair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, 0));
         jMISair.setText("Sair");
+        jMISair.setToolTipText("Fechar programa");
         jMISair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMISairActionPerformed(evt);
@@ -86,6 +90,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMIManutencaoPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, 0));
         jMIManutencaoPedido.setText("Manutenção Pedidos");
+        jMIManutencaoPedido.setToolTipText("Visualizar pedidos em aberto");
         jMIManutencaoPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMIManutencaoPedidoActionPerformed(evt);
@@ -168,9 +173,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         try {
             DAL.Conexao conec = new DAL.Conexao();
             if(conec.testaConexao() == true){
-                ImageIcon img = new ImageIcon("build\\classes\\View\\imagens\\Conectado.png");
-                jMStatusConexao.setToolTipText("Conectado!");                
+                ImageIcon img = new ImageIcon("build\\classes\\View\\imagens\\Conectado.png");              
                 jMStatusConexao.setIcon(img);
+                jMStatusConexao.setToolTipText("Conectado!");  
                 Thread th = new BotThread();
                 th.start();
             }
