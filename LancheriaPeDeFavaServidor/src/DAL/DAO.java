@@ -38,11 +38,13 @@ public class DAO<T> {
             Categoria cat = (Categoria) obj;
             queryInsert += " categoria(descricao) values ('"+cat.getDescricao()+"')";
             st.execute(queryInsert);
+            JOptionPane.showMessageDialog(null, "Registro cadastrado!");
         }else if(obj instanceof Produto){
             Produto pro = (Produto) obj;
             double novoPreco = pro.getCategoria_idCategoria();
             queryInsert += " produto (descricao, preco, Categoria_idCategoria) VALUES ('"+pro.getDescricao()+"',"+pro.getPreco()+", "+pro.getCategoria_idCategoria()+")";
             st.execute(queryInsert);
+            JOptionPane.showMessageDialog(null, "Registro cadastrado!");
         }else if(obj instanceof Cliente){
             Cliente novoCli = (Cliente) obj;
             String query = "INSERT INTO cliente (`idCliente`, `Nome`) VALUES ("+novoCli.getIdCliente()+", '"+novoCli.getNomeCliente()+"')";
@@ -50,8 +52,6 @@ public class DAO<T> {
         }else{
             JOptionPane.showMessageDialog(null, "Falta tratar essa classe!");
         }
-        
-        JOptionPane.showMessageDialog(null, "Registro cadastrada!");
     }
     
     /**
@@ -108,7 +108,7 @@ public class DAO<T> {
             while (rs.next()){
                 Pedido ped = new Pedido();
                 ped.setIdPedido(rs.getInt("idPedido"));
-                ped.setData(rs.getDate("Data"));
+                ped.setData(rs.getTimestamp("Data"));
                 ped.setFinalizado(rs.getInt("Finalizado"));
                 ped.setEntregue(rs.getInt("Entregue"));
                 ped.setCliente_idCliente(rs.getInt("Cliente_idCliente"));

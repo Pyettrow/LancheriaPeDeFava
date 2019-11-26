@@ -242,6 +242,7 @@ public class FrmCadastroCategoria extends javax.swing.JDialog {
                 jLCodigoCategoria.setText("");
                 jTFNomeCategoria.setText("");
                 jTFNomeCategoria.setEditable(false);
+                desativaTelaLimpaCampos();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(FrmCadastroCategoria.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

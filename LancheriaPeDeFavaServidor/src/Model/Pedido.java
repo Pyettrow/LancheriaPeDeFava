@@ -5,7 +5,7 @@
  */
 package Model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Pedido {
      * 1 - Entregue
      */
     private int idPedido;    
-    private Date Data;
+    private Timestamp Data;
     private int finalizado; 
     private int entregue;
     private int cliente_idCliente;
@@ -34,11 +34,11 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public Date getData() {
+    public Timestamp getData() {
         return Data;
     }
 
-    public void setData(Date Data) {
+    public void setData(Timestamp Data) {
         this.Data = Data;
     }
 

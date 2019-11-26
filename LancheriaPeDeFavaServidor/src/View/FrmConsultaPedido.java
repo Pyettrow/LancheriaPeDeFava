@@ -6,11 +6,12 @@
 package View;
 
 import Model.*;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -303,7 +304,9 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
                 for (int i = 0; i < lstPedidos.size(); i++) {
                     sumTotalPedido = dao.diversos(1, lstPedidos.get(i).getIdPedido());
                     Cliente cli = dao.consultaCliente(lstPedidos.get(i).getCliente_idCliente());
-                    Object[] add = {lstPedidos.get(i).getIdPedido(), cli.getNomeCliente(), lstPedidos.get(i).getData(), "R$"+sumTotalPedido};
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+                    String DataConvertida  = dateFormat.format(lstPedidos.get(i).getData());
+                    Object[] add = {lstPedidos.get(i).getIdPedido(), cli.getNomeCliente(), DataConvertida, "R$"+sumTotalPedido};
                     jTable.addRow(add);
                 }
             }            
