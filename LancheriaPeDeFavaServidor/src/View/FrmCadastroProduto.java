@@ -7,7 +7,6 @@ package View;
 
 import Model.Categoria;
 import Model.Produto;
-import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -28,7 +27,7 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
     public FrmCadastroProduto() {
         initComponents();
         this.setModal(true);
-        desativaTelaLimpaCampos();
+        limpaCampos();
         preencheComboBox(0);
         jBCancelar.setVisible(false);
     }
@@ -69,29 +68,16 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Produto"));
 
         jLabel1.setText("Código");
-        jLabel1.setToolTipText("Código do Produto");
 
         jLabel3.setText("Nome:");
-        jLabel3.setToolTipText("Nome do Produto");
 
         jLabel4.setText("Preço:");
-        jLabel4.setToolTipText("Preço do Produto");
-
-        jTFNomeProduto.setToolTipText("Nome do Produto");
 
         jCBCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categoria" }));
-        jCBCategoria.setToolTipText("Categoria  do Produto");
 
         jLCodigoProduto.setText("1");
-        jLCodigoProduto.setToolTipText("Código do Produto");
 
         jFTFPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
-        jFTFPreco.setToolTipText("Preço do Produto");
-        jFTFPreco.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jFTFPrecoKeyPressed(evt);
-            }
-        });
 
         jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Pesquisar.png"))); // NOI18N
         jBPesquisar.setToolTipText("Pesquisar Registro");
@@ -124,18 +110,10 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 jBAddActionPerformed(evt);
             }
         });
-        jBAdd.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jBAddKeyPressed(evt);
-            }
-        });
 
         jLabel2.setText("R$");
-        jLabel2.setToolTipText("Preço do Produto");
 
-        jBCancelar.setMnemonic('C');
         jBCancelar.setText("Cancelar");
-        jBCancelar.setToolTipText("Cancelar Operação");
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCancelarActionPerformed(evt);
@@ -152,38 +130,34 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jBCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 13, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                                        .addGap(107, 107, 107))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4)
+                                        .addGap(4, 4, 4)
                                         .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jFTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(105, 105, 105))
+                                        .addGap(1, 1, 1)
+                                        .addComponent(jFTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel1)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(62, 62, 62)
-                                        .addComponent(jLCodigoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jCBCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTFNomeProduto))
-                                .addContainerGap())
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jBAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
-                                .addGap(19, 19, 19))))))
+                                .addGap(47, 47, 47))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,23 +170,20 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                     .addComponent(jBPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLCodigoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLCodigoProduto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTFNomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addComponent(jTFNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jCBCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                .addGap(8, 8, 8)
+                .addComponent(jCBCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jFTFPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
-                .addGap(21, 21, 21)
+                    .addComponent(jFTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addGap(24, 24, 24)
                 .addComponent(jBCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -237,22 +208,62 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Botão Adcionar: Se variavel novoRegistroHabilitado == true irá habilitar 
-     * os campos para cadastrar o produto e irá pegar o novo codigo 
-     * para o novo cadastro com base no ultimo registro add mais um.
-     * @param evt 
-     */
     private void jBAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddActionPerformed
-        botaoAdd();
+        try {
+            DAL.DAO<Produto> novoRegistroProd = new DAL.DAO();
+            
+            if(adicionarRegistroHabilitado == true){
+                if(!jTFNomeProduto.getText().equals("")){
+                    if(jCBCategoria.getSelectedIndex() != 0){
+                        if(!jFTFPreco.getText().equals("")){
+                            
+                            Produto newProduto = new Produto();
+                            
+                            newProduto.setDescricao(jTFNomeProduto.getText());
+                            String selecionado = String.valueOf(jCBCategoria.getSelectedItem());
+                            String[] codigoDaCategoria = selecionado.split("-");
+                            newProduto.setCategoria_idCategoria(Integer.parseInt(codigoDaCategoria[0]));
+                            newProduto.setPreco(Double.parseDouble(jFTFPreco.getText().replaceAll(",", ".")));
+                            
+                            novoRegistroProd.insertRegistro(newProduto);
+                            
+                            jBCancelar.setVisible(false);
+                            adicionarRegistroHabilitado = false;
+                            limpaCampos();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Informe um preço para o produto!");
+                            jFTFPreco.requestFocus();
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Informe uma categoria!");
+                        jCBCategoria.requestFocus();
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Informe um nome para o produto!");
+                    jTFNomeProduto.requestFocus();
+                }
+            }else{
+                limpaCampos();
+                
+                String ultimoReg = novoRegistroProd.ultimoRegistro(Produto.class);
+                
+                jLCodigoProduto.setText(ultimoReg);
+                jTFNomeProduto.setEditable(true);
+                jCBCategoria.setEnabled(true);
+                jFTFPreco.setEditable(true);
+                jBAlterar.setEnabled(false);
+                jBExcluir.setEnabled(false);
+                jBPesquisar.setEnabled(false);
+                jBCancelar.setVisible(true);
+                adicionarRegistroHabilitado = true;
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FrmCadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmCadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBAddActionPerformed
 
-    /**
-     * Botão Alterar: Se alteraRegistroHabilitado == true irá alterar o 
-     * registro no banco de dados com base no que foi escrito
-     * senão ira dar aviso
-     * @param evt 
-     */
     private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
         if(alteraRegistroHabilitado == true){
             try {
@@ -267,7 +278,8 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 alterarProd.setPreco(Double.parseDouble(jFTFPreco.getText().replaceAll(",", ".")));
                 dao.alterarRegistro(alterarProd);
                  
-                desativaTelaLimpaCampos();
+                limpaCampos();
+                jBCancelar.setVisible(false);
                 
                 alteraRegistroHabilitado = false;
             } catch (ClassNotFoundException ex) {
@@ -291,12 +303,6 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jBAlterarActionPerformed
 
-    /**
-     * Botão Pesquisar: Irá abrir o FrmPesquisa com a listagem dos produtos
-     * e após selecionar irá retornar um frm.getIdProduto() com o id do produto 
-     * selecionada.
-     * @param evt 
-     */
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
         try {
             FrmPesquisa frm = new FrmPesquisa(2);
@@ -320,11 +326,6 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
-    /**
-     * Tratamento do botão para excluir o registro com base nos dados pegos na 
-     * pesquisa
-     * @param evt 
-     */
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
         if(!jTFNomeProduto.getText().equals("")){
             try {
@@ -332,7 +333,8 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 DAL.DAO<Produto> dao = new DAL.DAO();
                 dao.excluirRegistro(2, jLCodigoProduto.getText());
                 
-                desativaTelaLimpaCampos();
+                limpaCampos();
+                jBCancelar.setVisible(false);
                 
             } catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, ex);
@@ -349,41 +351,15 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jBExcluirActionPerformed
 
-    /**
-     * Botão de limpar os campos e para qualquer alteraçao/inserção
-     * @param evt 
-     */
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        desativaTelaLimpaCampos();
+        limpaCampos();
+        jBAdd.setEnabled(true);
+        jBAlterar.setEnabled(true);
+        jBExcluir.setEnabled(true);
+        jBPesquisar.setEnabled(true);
+        jBCancelar.setVisible(false);
+        adicionarRegistroHabilitado = false;
     }//GEN-LAST:event_jBCancelarActionPerformed
-
-    /**
-     * Tratando as teclas "CTRL + I" para habilitar o modo de inclusão de uma 
-     * categoria
-     * @param evt 
-     */
-    private void jBAddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBAddKeyPressed
-        if(evt.isControlDown() == true){
-            if(evt.getKeyCode() == KeyEvent.VK_I){
-                botaoAdd();
-            }
-        }
-    }//GEN-LAST:event_jBAddKeyPressed
-
-    /**
-     * Tratando as telcas "CTRL + S" para quando prestes a inserir registro e 
-     * chama função para inserção
-     * @param evt 
-     */
-    private void jFTFPrecoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFTFPrecoKeyPressed
-        if(alteraRegistroHabilitado == false && adicionarRegistroHabilitado == true){
-            if(evt.isControlDown() == true){
-                if(evt.getKeyCode() == KeyEvent.VK_S){
-                    botaoAdd();
-                }
-            }
-        }
-    }//GEN-LAST:event_jFTFPrecoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -408,74 +384,7 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
     private javax.swing.JTextField jTFNomeProduto;
     // End of variables declaration//GEN-END:variables
 
-    
-    /**
-     * Botão Adcionar: Se variavel adicionarRegistroHabilitado == false irá habilitar 
-     * os campos para cadastrar o produto e irá pegar o novo codigo 
-     * para o novo cadastro com base no ultimo registro add mais um. Se igual a 
-     * true ira chamar o metodo para inserir o registro no banco
-     */
-    public void botaoAdd(){
-        try {
-            DAL.DAO<Produto> novoRegistroProd = new DAL.DAO();
-            
-            if(adicionarRegistroHabilitado == true){
-                if(!jTFNomeProduto.getText().equals("")){
-                    if(jCBCategoria.getSelectedIndex() != 0){
-                        if(!jFTFPreco.getText().equals("")){
-                            
-                            Produto newProduto = new Produto();
-                            
-                            newProduto.setDescricao(jTFNomeProduto.getText());
-                            String selecionado = String.valueOf(jCBCategoria.getSelectedItem());
-                            String[] codigoDaCategoria = selecionado.split("-");
-                            newProduto.setCategoria_idCategoria(Integer.parseInt(codigoDaCategoria[0]));
-                            newProduto.setPreco(Double.parseDouble(jFTFPreco.getText().replaceAll(",", ".")));
-                            
-                            novoRegistroProd.insertRegistro(newProduto);
-                            
-                            jBCancelar.setVisible(false);
-                            adicionarRegistroHabilitado = false;
-                            desativaTelaLimpaCampos();
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Informe um preço para o produto!");
-                            jFTFPreco.requestFocus();
-                        }
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Informe uma categoria!");
-                        jCBCategoria.requestFocus();
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Informe um nome para o produto!");
-                    jTFNomeProduto.requestFocus();
-                }
-            }else{
-                desativaTelaLimpaCampos();
-                
-                String ultimoReg = novoRegistroProd.ultimoRegistro(Produto.class);
-                
-                jLCodigoProduto.setText(ultimoReg);
-                jTFNomeProduto.setEditable(true);
-                jTFNomeProduto.requestFocus();
-                jCBCategoria.setEnabled(true);
-                jFTFPreco.setEditable(true);
-                jBAlterar.setEnabled(false);
-                jBExcluir.setEnabled(false);
-                jBPesquisar.setEnabled(false);
-                jBCancelar.setVisible(true);
-                adicionarRegistroHabilitado = true;
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FrmCadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(FrmCadastroProduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    /**
-     * Metodos para limpar os campos e habiltar os botões para nova interação
-     */
-    public void desativaTelaLimpaCampos(){
+    public void limpaCampos(){
         jLCodigoProduto.setText("");
         jTFNomeProduto.setEditable(false);
         jTFNomeProduto.setText("");
@@ -483,13 +392,6 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
         jCBCategoria.setEnabled(false);
         jFTFPreco.setEditable(false);
         jFTFPreco.setText("");
-        jBAdd.setEnabled(true);
-        jBAlterar.setEnabled(true);
-        jBExcluir.setEnabled(true);
-        jBPesquisar.setEnabled(true);
-        jBCancelar.setVisible(false);
-        adicionarRegistroHabilitado = false;
-        alteraRegistroHabilitado = false;
     }
     
     /**
