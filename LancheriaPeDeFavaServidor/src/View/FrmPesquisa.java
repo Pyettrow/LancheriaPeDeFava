@@ -49,6 +49,7 @@ public class FrmPesquisa extends javax.swing.JDialog {
             
             if(tela == 1){
                 ArrayList<Categoria> lstCategorias = dao.todosRegistros(Categoria.class, 0);
+                jList.setToolTipText("Lista de Categorias");
                 if(!lstCategorias.isEmpty()){
                     for (int i = 0; i < lstCategorias.size(); i++) {
                         dlm.add(i, lstCategorias.get(i).getIdCategoria()+"-"+lstCategorias.get(i).getDescricao());
@@ -56,6 +57,7 @@ public class FrmPesquisa extends javax.swing.JDialog {
                 }
             }else if(tela == 2){
                 ArrayList<Produto> lstProduto = dao.todosRegistros(Produto.class, 0);
+                jList.setToolTipText("Lista de Produtos");
                 if(!lstProduto.isEmpty()){
                     for (int j = 0; j < lstProduto.size(); j++) {
                         dlm.add(j, lstProduto.get(j).getIdProduto()+"-"+lstProduto.get(j).getDescricao());
@@ -90,6 +92,7 @@ public class FrmPesquisa extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jList);
 
         jBOk.setText("Ok");
+        jBOk.setToolTipText("Selecionar registro");
         jBOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBOkActionPerformed(evt);
@@ -119,6 +122,11 @@ public class FrmPesquisa extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Tratamento do clique do botão "Ok" que ira pegar e fazer um split 
+     * do id e nome do produto/categorai, com base no valor do int TELA
+     * @param evt 
+     */
     private void jBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkActionPerformed
         DefaultListModel dlm = new DefaultListModel();
         dlm.addElement(jList.getSelectedValue());

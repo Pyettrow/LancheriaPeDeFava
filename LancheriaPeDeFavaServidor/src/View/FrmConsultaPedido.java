@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,8 +24,6 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
      */
     public FrmConsultaPedido() {
         initComponents();
-        //this.setModal(true);
-        //this.setResizable(false);
         atualizaListaPedido();
     }
 
@@ -37,14 +36,13 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPGeral = new javax.swing.JPanel();
         jBFinalizarEntrega = new javax.swing.JButton();
         jBAtualizarTela = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jTPedidos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jTItensPedidos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -52,6 +50,7 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
 
         jBFinalizarEntrega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Verificado.png"))); // NOI18N
         jBFinalizarEntrega.setText("Finalizar Entrega");
+        jBFinalizarEntrega.setToolTipText("Finalizar pedido da Tabela por Entregar");
         jBFinalizarEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBFinalizarEntregaActionPerformed(evt);
@@ -60,6 +59,7 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
 
         jBAtualizarTela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/imagens/Atualizar.png"))); // NOI18N
         jBAtualizarTela.setText("Atualizar a Tela");
+        jBAtualizarTela.setToolTipText("Atualizar a Tabela a Entregar");
         jBAtualizarTela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAtualizarTelaActionPerformed(evt);
@@ -91,20 +91,17 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jTPedidos.setMinimumSize(new java.awt.Dimension(90, 0));
-        jTPedidos.setPreferredSize(new java.awt.Dimension(220, 0));
-        jTPedidos.getTableHeader().setReorderingAllowed(false);
+        jTPedidos.setToolTipText("Tabela a Entregar");
         jTPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTPedidosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTPedidos);
+        jScrollPane3.setViewportView(jTPedidos);
         if (jTPedidos.getColumnModel().getColumnCount() > 0) {
             jTPedidos.getColumnModel().getColumn(0).setResizable(false);
             jTPedidos.getColumnModel().getColumn(0).setPreferredWidth(3);
             jTPedidos.getColumnModel().getColumn(1).setResizable(false);
-            jTPedidos.getColumnModel().getColumn(1).setPreferredWidth(150);
             jTPedidos.getColumnModel().getColumn(2).setResizable(false);
             jTPedidos.getColumnModel().getColumn(2).setPreferredWidth(10);
             jTPedidos.getColumnModel().getColumn(3).setResizable(false);
@@ -115,17 +112,16 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(8, 8, 8))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Itens do Pedido Selecionado"));
@@ -135,7 +131,7 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Cod. Produto", "Descrição", "Observação", "Qtde", "Vl. Unit.", "Vl. Total."
+                "Cod. Produto", "Descrição", "Observação", "Qtde", "Vl. Unit.", "Vl. Total"
             }
         ) {
             Class[] types = new Class [] {
@@ -153,62 +149,29 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTItensPedidos);
+        jTItensPedidos.setToolTipText("Itens do pedido selecionado");
+        jScrollPane1.setViewportView(jTItensPedidos);
         if (jTItensPedidos.getColumnModel().getColumnCount() > 0) {
             jTItensPedidos.getColumnModel().getColumn(0).setResizable(false);
-            jTItensPedidos.getColumnModel().getColumn(0).setPreferredWidth(10);
             jTItensPedidos.getColumnModel().getColumn(1).setResizable(false);
             jTItensPedidos.getColumnModel().getColumn(2).setResizable(false);
             jTItensPedidos.getColumnModel().getColumn(3).setResizable(false);
-            jTItensPedidos.getColumnModel().getColumn(3).setPreferredWidth(5);
             jTItensPedidos.getColumnModel().getColumn(4).setResizable(false);
-            jTItensPedidos.getColumnModel().getColumn(4).setPreferredWidth(20);
             jTItensPedidos.getColumnModel().getColumn(5).setResizable(false);
-            jTItensPedidos.getColumnModel().getColumn(5).setPreferredWidth(20);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        javax.swing.GroupLayout jPGeralLayout = new javax.swing.GroupLayout(jPGeral);
-        jPGeral.setLayout(jPGeralLayout);
-        jPGeralLayout.setHorizontalGroup(
-            jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPGeralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPGeralLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBFinalizarEntrega, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAtualizarTela, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPGeralLayout.setVerticalGroup(
-            jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPGeralLayout.createSequentialGroup()
-                .addGroup(jPGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPGeralLayout.createSequentialGroup()
-                        .addComponent(jBAtualizarTela, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBFinalizarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,48 +179,78 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPGeral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBFinalizarEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBAtualizarTela, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPGeral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jBAtualizarTela)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBFinalizarEntrega)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Tratando o click da linha na tabela de pedidos, para então poder atualziar 
+     * a tabela dos itens desse pedido
+     * @param evt 
+     */
+    private void jTPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPedidosMouseClicked
+        int linhaSelecionada = jTPedidos.getSelectedRow();
+        int codPedido = Integer.parseInt(jTPedidos.getValueAt(linhaSelecionada, 0).toString());
+
+        limpaTabelaListaItens();
+        atualizaListaItens(codPedido);
+    }//GEN-LAST:event_jTPedidosMouseClicked
+
+    /**
+     * Tratamento do botão atualizar tabela de pedidos, realiza uma chama a função
+     * de limpar a tabela dos itens e de atualizar a tabela pedido
+     * @param evt 
+     */
     private void jBAtualizarTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarTelaActionPerformed
         limpaTabelaListaItens();
         atualizaListaPedido();
     }//GEN-LAST:event_jBAtualizarTelaActionPerformed
 
-    private void jTPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPedidosMouseClicked
-
-        int linhaSelecionada = jTPedidos.getSelectedRow();        
-        int codPedido = Integer.parseInt(jTPedidos.getValueAt(linhaSelecionada, 0).toString());
-
-        limpaTabelaListaItens();
-        atualizaListaItens(codPedido);
-        
-    }//GEN-LAST:event_jTPedidosMouseClicked
-
+    /**
+     * Tratamento do click do botão finalizar pedido, onde faz um update no banco
+     * e logo em seguida atualiza a lista para o pedido alterado não aparecer 
+     * na tabela novamente
+     * @param evt 
+     */
     private void jBFinalizarEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFinalizarEntregaActionPerformed
         limpaTabelaListaItens();
-        
+
         if(jTPedidos.getSelectedRow() >= 0){
-            
+
             try {
-                
+
                 DAL.DAO dao = new DAL.DAO();
                 dao.diversos(2, (int) jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 0));
                 atualizaListaPedido();
-                
+
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(FrmConsultaPedido.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -266,6 +259,7 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jBFinalizarEntregaActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -274,15 +268,17 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtualizarTela;
     private javax.swing.JButton jBFinalizarEntrega;
-    private javax.swing.JPanel jPGeral;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTItensPedidos;
     private javax.swing.JTable jTPedidos;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Atualizad a tabela de pedidos com base em uma consulta em sql
+     */
     public void atualizaListaPedido(){
         limpaTabelaListaItens();
         DefaultTableModel jTable = (DefaultTableModel) jTPedidos.getModel();
@@ -298,7 +294,6 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
             jTable.removeRow(i);
         }
         
-        String nomeCliente = "";
         try {
             DAL.DAO<Pedido> dao = new DAL.DAO();
             
@@ -321,19 +316,29 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
     }
     
     /**
-     * Verificar o modo de limpar linhas do PedidoItem
+     * Limpando a tabela que lista os itens do pedido
      */
     public void limpaTabelaListaItens(){
         DefaultTableModel jTable = (DefaultTableModel) jTItensPedidos.getModel();
         
         /*Limpando tabela dos itens*/
-        if(jTable.getRowCount() > 0){           
+        if(jTable.getRowCount() > 0){    
             for (int j = 0 ; j <= jTable.getRowCount() ; j ++) {                
                 jTable.removeRow(0);
             }
         }
+        
+        /*Limpando a tabela dos pedidos*/
+        for (int i = 0; i < jTable.getRowCount(); i++) {
+            jTable.removeRow(i);
+        }
     }
     
+    /**
+     * Atualiza a tablea de lista itens, onde é necessario passar qual linha da 
+     * tabela de pedidos foi clicada
+     * @param numeroPedido 
+     */
     public void atualizaListaItens(int numeroPedido){
         DefaultTableModel jTable = (DefaultTableModel) jTItensPedidos.getModel();
         
