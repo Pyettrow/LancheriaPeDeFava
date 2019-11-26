@@ -130,7 +130,20 @@ public class DAO<T> {
                 lstRegistros.add((T)pedItem);
             }
             return lstRegistros;
-        }else{
+        }else if (classe == Cliente.class) {
+            lstRegistros = new ArrayList();
+            queryConsulta += " cliente";
+            rs = st.executeQuery(queryConsulta);
+
+            while (rs.next()) {
+                Cliente newCli = new Cliente();
+                newCli.setIdCliente(rs.getInt("idCliente"));
+                newCli.setNomeCliente(rs.getString("Nome"));
+                lstRegistros.add((T) newCli);
+            }
+
+            return lstRegistros;
+        } else {
             JOptionPane.showMessageDialog(null, "Sem tratamento para essa classe");
             return null;
         }        
