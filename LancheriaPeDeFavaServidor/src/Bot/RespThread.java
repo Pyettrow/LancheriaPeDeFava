@@ -72,7 +72,7 @@ public class RespThread extends Thread {
 
                 //Faz a recepção da lista das categorias no BD para informar ao cliente
                 DAL.DAO dao = new DAL.DAO();
-                ArrayList<Categoria> lstCat = dao.todosRegistros(Categoria.class, 0);
+                ArrayList<Categoria> lstCat = dao.todosRegistros(Categoria.class, 0, 0);
 
                 //Enviar outras mensagens contendo as categorias
                 for (int i = 0; i < lstCat.size(); i++) {

@@ -48,7 +48,7 @@ public class FrmPesquisa extends javax.swing.JDialog {
             DAL.DAO dao = new DAL.DAO<Categoria>();
             
             if(tela == 1){
-                ArrayList<Categoria> lstCategorias = dao.todosRegistros(Categoria.class, 0);
+                ArrayList<Categoria> lstCategorias = dao.todosRegistros(Categoria.class, 0, 0);
                 jList.setToolTipText("Lista de Categorias");
                 if(!lstCategorias.isEmpty()){
                     for (int i = 0; i < lstCategorias.size(); i++) {
@@ -56,7 +56,7 @@ public class FrmPesquisa extends javax.swing.JDialog {
                     }
                 }
             }else if(tela == 2){
-                ArrayList<Produto> lstProduto = dao.todosRegistros(Produto.class, 0);
+                ArrayList<Produto> lstProduto = dao.todosRegistros(Produto.class, 0, 0);
                 jList.setToolTipText("Lista de Produtos");
                 if(!lstProduto.isEmpty()){
                     for (int j = 0; j < lstProduto.size(); j++) {

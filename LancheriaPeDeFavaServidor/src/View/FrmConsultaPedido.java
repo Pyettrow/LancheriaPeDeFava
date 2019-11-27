@@ -298,7 +298,7 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
         try {
             DAL.DAO<Pedido> dao = new DAL.DAO();
             
-            lstPedidos = dao.todosRegistros(Pedido.class, 0);            
+            lstPedidos = dao.todosRegistros(Pedido.class, 0, 0);            
             
             if(!lstPedidos.isEmpty()){
                 for (int i = 0; i < lstPedidos.size(); i++) {
@@ -349,7 +349,7 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
             
             DAL.DAO dao = new DAL.DAO();
 
-            ArrayList<PedidoItem> lstPedidoItem = dao.todosRegistros(PedidoItem.class, numeroPedido);
+            ArrayList<PedidoItem> lstPedidoItem = dao.todosRegistros(PedidoItem.class, numeroPedido, 0);
             
             if(!lstPedidoItem.isEmpty()){
                 for (int i = 0; i < lstPedidoItem.size(); i++) {

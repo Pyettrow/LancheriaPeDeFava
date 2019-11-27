@@ -205,13 +205,13 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jCBCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                 .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jFTFPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                    .addComponent(jFTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(jBCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -507,7 +507,7 @@ public class FrmCadastroProduto extends javax.swing.JDialog {
             
             DAL.DAO dao = new DAL.DAO();
             
-            ArrayList<Categoria> lstCategoria = dao.todosRegistros(Categoria.class, 0);
+            ArrayList<Categoria> lstCategoria = dao.todosRegistros(Categoria.class, 0, 0);
             
             for (int i = 0; i < lstCategoria.size(); i++) {
                 if(i == 0){

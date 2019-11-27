@@ -39,7 +39,7 @@ public class BotThread extends Thread {
     public void run() {
         try {
             //Alocação dos clientes na lista para procurar se os clientes estão no banco de dados
-            lst = d.todosRegistros(Cliente.class, 0);
+            lst = d.todosRegistros(Cliente.class, 0, 0);
             Cliente auxCli = new Cliente();
 
             for (int i = 0; i < lst.size(); i++) {
@@ -81,7 +81,7 @@ public class BotThread extends Thread {
 
                         } else {//Se ja existe
                             //Recebe a lista de clientes no banco de dados para procurar em qual trhead esta sendo tratado
-                            lst = d.todosRegistros(Cliente.class, 0);
+                            lst = d.todosRegistros(Cliente.class, 0, 0);
 
                             //For para localizar a Trhead do cliente
                             for (int i = 0; i < lst.size(); i++) {

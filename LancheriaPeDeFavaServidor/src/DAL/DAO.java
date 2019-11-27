@@ -57,16 +57,21 @@ public class DAO<T> {
     /**
      * Consulta todos os registros de uma certa tabela, porém para o PedidoItem
      * era necessário realizar a consulta tendo com resultado somentes os itens 
-     * do pedido passado
+     * do pedido passado e para o alguns casos no bot é necessário passar os 
+     * produtos de uma certa categoria.
      * Classe - Enviar a classe para realizar a constula(Pedido.class)
      * Pedido - Passar o numero do pedido para realizar a consulta, caso não 
+     * precise passsar 0 
+     * Categoria - Passar caso sejá necessário pegar todos os produtos de uma 
+     * certa categoria, caso não precise passsar 0 
      * precisa passar 0
      * @param classe
      * @param pedido
+     * @param categoria
      * @return
      * @throws SQLException 
      */
-    public ArrayList<T> todosRegistros(Class classe, int pedido) throws SQLException{
+    public ArrayList<T> todosRegistros(Class classe, int pedido, int categoria) throws SQLException{
         Statement st = con.createStatement();
         ResultSet rs;
         
@@ -88,17 +93,31 @@ public class DAO<T> {
             
             return lstRegistros;
         }else if(classe == Produto.class){
-            queryConsulta += " produto";
-            rs = st.executeQuery(queryConsulta);
-            
-            while (rs.next()){
-                Produto newProduto = new Produto();
-                newProduto.setIdProduto(rs.getInt("idProduto"));
-                newProduto.setDescricao(rs.getString("Descricao"));
-                newProduto.setPreco(rs.getDouble("Preco"));
-                newProduto.setCategoria_idCategoria(rs.getInt("Categoria_idCategoria"));
-                lstRegistros.add((T)newProduto);
-            }            
+            if(categoria > 0){
+                queryConsulta += " produto WHERE Categoria_idCategoria ="+categoria;
+                rs = st.executeQuery(queryConsulta);
+
+                while (rs.next()){
+                    Produto newProduto = new Produto();
+                    newProduto.setIdProduto(rs.getInt("idProduto"));
+                    newProduto.setDescricao(rs.getString("Descricao"));
+                    newProduto.setPreco(rs.getDouble("Preco"));
+                    newProduto.setCategoria_idCategoria(rs.getInt("Categoria_idCategoria"));
+                    lstRegistros.add((T)newProduto);
+                }        
+            }else{
+                queryConsulta += " produto";
+                rs = st.executeQuery(queryConsulta);
+
+                while (rs.next()){
+                    Produto newProduto = new Produto();
+                    newProduto.setIdProduto(rs.getInt("idProduto"));
+                    newProduto.setDescricao(rs.getString("Descricao"));
+                    newProduto.setPreco(rs.getDouble("Preco"));
+                    newProduto.setCategoria_idCategoria(rs.getInt("Categoria_idCategoria"));
+                    lstRegistros.add((T)newProduto);
+                }        
+            }    
             
             return lstRegistros;
         }else if(classe == Pedido.class){
@@ -129,6 +148,7 @@ public class DAO<T> {
                 pedItem.setObservacao(rs.getString("Observacao"));
                 lstRegistros.add((T)pedItem);
             }
+            
             return lstRegistros;
         }else if (classe == Cliente.class) {
             lstRegistros = new ArrayList();
@@ -143,7 +163,7 @@ public class DAO<T> {
             }
 
             return lstRegistros;
-        } else {
+        } else{
             JOptionPane.showMessageDialog(null, "Sem tratamento para essa classe");
             return null;
         }        
