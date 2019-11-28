@@ -204,10 +204,10 @@ public class RespThread extends Thread {
                     //Se o cliente so quiser finalizar o pedido
                     if (msg.equals("finalizar") || msg.equals("1")) {
                         //Seta as informações do pedido
-//                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-//                        Date parsedDate = dateFormat.parse(t.getData() + " " + t.getHora());
-//                        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-//                        ped.setData(timestamp);
+                        long dataHora = Long.parseLong(t.getData() + " " + t.getHora());
+                        Date dt = new Date(dataHora);
+                        Timestamp time = new Timestamp(dt.getTime());
+                        ped.setData(time);
                         ped.setFinalizado(1);
                         ped.setEntregue(0);
                         ped.setCliente_idCliente(cliId);
@@ -222,9 +222,9 @@ public class RespThread extends Thread {
 
                         //Procura o pedido para receber o ID de Pedido e inserir no PedidoItem
                         for (int i = 0; i < lstPed.size(); i++) {
-//                            if ((lstPed.get(i).getCliente_idCliente() == cliId) && (lstPed.get(i).getData() == timestamp)) {
-//                                pedI.setPedido_id(lstPed.get(i).getIdPedido());
-//                            }
+                            if ((lstPed.get(i).getCliente_idCliente() == cliId) && (lstPed.get(i).getData() == time)) {
+                                pedI.setPedido_id(lstPed.get(i).getIdPedido());
+                            }
                         }
 
                         //Insere o pedido item
@@ -266,10 +266,10 @@ public class RespThread extends Thread {
 
                     } else if (msg.equals("adicionar produto") || msg.equals("3")) {
                         //Seta as informações do pedido
-//                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-//                        Date parsedDate = dateFormat.parse(t.getData() + " " + t.getHora());
-//                        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-//                        ped.setData(timestamp);
+                        long dataHora = Long.parseLong(t.getData() + " " + t.getHora());
+                        Date dt = new Date(dataHora);
+                        Timestamp time = new Timestamp(dt.getTime());
+                        ped.setData(time);                        
                         ped.setFinalizado(1);
                         ped.setEntregue(0);
                         ped.setCliente_idCliente(cliId);
@@ -284,9 +284,9 @@ public class RespThread extends Thread {
 
                         //Procura o pedido para receber o ID de Pedido e inserir no PedidoItem
                         for (int i = 0; i < lstPed.size(); i++) {
-//                            if ((lstPed.get(i).getCliente_idCliente() == cliId) && (lstPed.get(i).getData() == timestamp)) {
-//                                pedI.setPedido_id(lstPed.get(i).getIdPedido());
-//                            }
+                            if ((lstPed.get(i).getCliente_idCliente() == cliId) && (lstPed.get(i).getData() == time)) {
+                                pedI.setPedido_id(lstPed.get(i).getIdPedido());
+                            }
                         }
                         //Insere o pedido item
                         daoPed.insertRegistro(pedI);
