@@ -149,8 +149,8 @@ public class DAO<T> {
             
             while(rs.next()){
                 PedidoItem pedItem = new PedidoItem();
-                pedItem.setPedido_id(rs.getInt("Produto_idProduto"));
-                pedItem.setProduto_id(rs.getInt(rs.getInt("Pedido_idPedido")));
+                pedItem.setProduto_id(rs.getInt("Produto_idProduto"));
+                pedItem.setPedido_id(rs.getInt("Pedido_idPedido"));
                 pedItem.setQuantidade(rs.getInt("Quantidade"));
                 pedItem.setPreco(rs.getDouble("Preco"));
                 pedItem.setObservacao(rs.getString("Observacao"));
