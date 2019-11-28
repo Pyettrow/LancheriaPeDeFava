@@ -101,7 +101,8 @@ public class RespThread extends Thread {
 
                         //Enviar outras mensagens contendo as categorias
                         for (int i = 0; i < lstCat.size(); i++) {
-                            b.enviarMensagem(Integer.toString(cliId), (Integer.toString(lstProd.get(i).getIdProduto()) + "%20" + lstProd.get(i).getDescricao() + "%20R$" + Double.toString(lstProd.get(i).getPreco())));
+                            b.enviarMensagem(Integer.toString(cliId), (Integer.toString(lstProd.get(i).getIdProduto()) + "%20" 
+                                    + lstProd.get(i).getDescricao() + "%20R$" + Double.toString(lstProd.get(i).getPreco())));
                         }
 
                         //Incrementa no contador para saber em qual processo do pedido esta
