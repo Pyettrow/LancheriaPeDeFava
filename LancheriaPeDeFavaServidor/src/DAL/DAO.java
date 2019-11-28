@@ -49,6 +49,14 @@ public class DAO<T> {
             Cliente novoCli = (Cliente) obj;
             String query = "INSERT INTO cliente (`idCliente`, `Nome`) VALUES ("+novoCli.getIdCliente()+", '"+novoCli.getNomeCliente()+"')";
             st.execute(query);
+        }else if(obj instanceof Pedido){
+            Pedido novoPed = (Pedido) obj;
+            String query = "INSERT INTO pedido (Data, Finalizado, Entregue, Cliente_idCliente) VALUES ("+novoPed.getData()+", "+novoPed.getFinalizado()+", "+novoPed.getEntregue()+", "+novoPed.getCliente_idCliente()+")";
+            st.execute(query);
+        }else if(obj instanceof PedidoItem){
+            PedidoItem novoPedI = (PedidoItem) obj;
+            String query = "INSERT INTO pedidoitem (Produto_idProduto, Pedido_idPedido, Quantidade, Preco, Obeservacao) VALUES ("+novoPedI.getProduto_id()+", "+novoPedI.getPedido_id()+", "+novoPedI.getQuantidade()+", "+novoPedI.getPreco()+", "+novoPedI.getObservacao()+")";
+            st.execute(query);
         }else{
             JOptionPane.showMessageDialog(null, "Falta tratar essa classe!");
         }

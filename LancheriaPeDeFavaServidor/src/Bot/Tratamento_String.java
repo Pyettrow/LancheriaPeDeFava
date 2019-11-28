@@ -85,7 +85,7 @@ public class Tratamento_String {
         //O valor da data em epoch é multiplicado por 1000 para ser feito a converção
         Date date = new Date(dt * 1000);
         //Definição do formato que sera apresentada a data final
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy;HH:mm:ss");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd;hh:mm:ss.SSS"/*"dd/MM/yyyy;HH:mm:ss"*/);
         //Converção do horario obtido para o fuzo horario do Brasil
         format.setTimeZone(TimeZone.getTimeZone("America/Bahia"));
         //Formata a data para o horario Brasileiro
