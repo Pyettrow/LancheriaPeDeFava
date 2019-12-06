@@ -8,6 +8,7 @@ package Model;
 import Bot.*;
 import DAL.DAO;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,9 +30,8 @@ public class BotThread extends Thread {
 
     public BotThread() throws ClassNotFoundException, SQLException {
         this.b = new Bot("990042089:AAGrvUkaaUzU3xCiIFywOZn_agsFYgAqnaw");
+        //this.b = new Bot("889676824:AAFXMJyjUCkzCY7vPs_tOMepW5RfWa4GYbI");
         this.d = new DAO<Cliente>();
-//        this.t = new Tratamento_String();
-//        this.c = new Cliente();
         this.lstResp = new ArrayList<RespThread>();
         this.lst = new ArrayList();
     }
@@ -72,7 +72,11 @@ public class BotThread extends Thread {
                             try {
                                 //Manda a mensagem inicial para um novo contato
                                 rspt = new RespThread(t);
-                                rspt.responder(t, b);
+                                try {
+                                    rspt.responder(t, b);
+                                } catch (ParseException ex) {
+                                    Logger.getLogger(BotThread.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 lstResp.add(rspt);
 
                             } catch (ClassNotFoundException ex) {
@@ -87,8 +91,12 @@ public class BotThread extends Thread {
                             for (int i = 0; i < lst.size(); i++) {
                                 //Testa se o id do cliente é o mesmo da Trhead encontrada
                                 if (t.getUser_id() == lstResp.get(i).getCliId()) {
-                                    //Responde o cliente
-                                    lstResp.get(i).responder(t, b);
+                                    try {
+                                        //Responde o cliente
+                                        lstResp.get(i).responder(t, b);
+                                    } catch (ParseException ex) {
+                                        Logger.getLogger(BotThread.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                 }
                             }
                         }

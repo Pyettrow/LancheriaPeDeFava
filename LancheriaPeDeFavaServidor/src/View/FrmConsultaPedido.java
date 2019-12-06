@@ -26,6 +26,7 @@ public class FrmConsultaPedido extends javax.swing.JDialog {
     public FrmConsultaPedido() {
         initComponents();
         atualizaListaPedido();
+        this.setModal(true);
     }
 
     /**

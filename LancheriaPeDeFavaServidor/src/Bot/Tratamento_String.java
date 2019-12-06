@@ -15,6 +15,7 @@ public class Tratamento_String {
     private String hora;
     private String mensagem;
     private String str;
+    private long dtbugada;
 
     /**
      * Sobrecarca para criação de classe vazia
@@ -82,10 +83,11 @@ public class Tratamento_String {
         pos2 = str.indexOf(",\"text\":\"");
         //Recorta a data informada na String maior que esta em formato Epoch time
         long dt = Integer.parseInt(str.substring(pos1 + 8, pos2));
+//        dtbugada = dt * 1000;
         //O valor da data em epoch é multiplicado por 1000 para ser feito a converção
         Date date = new Date(dt * 1000);
         //Definição do formato que sera apresentada a data final
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd;hh:mm:ss.SSS"/*"dd/MM/yyyy;HH:mm:ss"*/);
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd;hh:mm:ss"/*"dd/MM/yyyy;HH:mm:ss"*/);
         //Converção do horario obtido para o fuzo horario do Brasil
         format.setTimeZone(TimeZone.getTimeZone("America/Bahia"));
         //Formata a data para o horario Brasileiro
@@ -118,6 +120,10 @@ public class Tratamento_String {
         System.out.println("Mensagem: " + this.mensagem);
 
 
+    }
+
+    public long getDtbugada() {
+        return dtbugada;
     }
 
 }

@@ -9,9 +9,10 @@ import Model.Categoria;
 import Model.Produto;
 import Model.Pedido;
 import Model.PedidoItem;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -62,7 +63,7 @@ public class RespThread extends Thread {
         this.aux = true;
     }
 
-    public void responder(Tratamento_String t, Bot b) throws SQLException {
+    public void responder(Tratamento_String t, Bot b) throws SQLException, ParseException {
         try {
             this.msg = t.getMensagem();
 
@@ -100,8 +101,8 @@ public class RespThread extends Thread {
                         b.enviarMensagem(Integer.toString(cliId), "Escolha%20o%20produto%20desejado:");
 
                         //Enviar outras mensagens contendo as categorias
-                        for (int i = 0; i < lstCat.size(); i++) {
-                            b.enviarMensagem(Integer.toString(cliId), (Integer.toString(lstProd.get(i).getIdProduto()) + "%20" 
+                        for (int i = 0; i < lstProd.size(); i++) {
+                            b.enviarMensagem(Integer.toString(cliId), (Integer.toString(lstProd.get(i).getIdProduto()) + "%20"
                                     + lstProd.get(i).getDescricao() + "%20R$" + Double.toString(lstProd.get(i).getPreco())));
                         }
 
@@ -176,10 +177,11 @@ public class RespThread extends Thread {
 
                         //Incrementa no contador para saber em qual processo do pedido esta 
                         cntr++;
+
+                        //Chamada do metodo novamente para continuar nos processos
+                        responder(t, b);
                     }
 
-                    //Chamada do metodo novamente para continuar nos processos
-                    responder(t, b);
                     break;
 
                 case 5:
@@ -188,7 +190,7 @@ public class RespThread extends Thread {
                     }
 
                     //Mosta toda a informação do pedido do cliente
-                    b.enviarMensagem(Integer.toString(cliId), ("Você%20pediu:%20" + quant + "%20" + lstProd.get(prod - 1).getDescricao() + "%20" + pedI.getObservacao() + "%20R$" + Double.toString(quant * pedI.getPreco())));
+                    b.enviarMensagem(Integer.toString(cliId), ("Você%20pediu:%20" + quant + "%20" + lstCat.get(cat - 1).getDescricao() + "%20" + lstProd.get(prod - 1).getDescricao() + "%20" + pedI.getObservacao() + "%20R$" + Double.toString(quant * pedI.getPreco())));
 
                     //Pede a confirmação do pedido do cliente
                     b.enviarMensagem(Integer.toString(cliId), "O%20que%20deseja%20realizar%20com%20seu%20pedido%20a%20seguir?");
@@ -205,10 +207,11 @@ public class RespThread extends Thread {
                     //Se o cliente so quiser finalizar o pedido
                     if (msg.equals("finalizar") || msg.equals("1")) {
                         //Seta as informações do pedido
-                        long dataHora = Long.parseLong(t.getData() + " " + t.getHora());
-                        Date dt = new Date(dataHora);
-                        Timestamp time = new Timestamp(dt.getTime());
-                        ped.setData(time);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                        Date parsedDate = dateFormat.parse(t.getData() + " " + t.getHora());
+                        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+
+                        ped.setData(timestamp/*time*/);
                         ped.setFinalizado(1);
                         ped.setEntregue(0);
                         ped.setCliente_idCliente(cliId);
@@ -223,7 +226,7 @@ public class RespThread extends Thread {
 
                         //Procura o pedido para receber o ID de Pedido e inserir no PedidoItem
                         for (int i = 0; i < lstPed.size(); i++) {
-                            if ((lstPed.get(i).getCliente_idCliente() == cliId) && (lstPed.get(i).getData() == time)) {
+                            if ((lstPed.get(i).getCliente_idCliente() == cliId)/* && (lstPed.get(i).getData() == /*timetimestamp)*/) {
                                 pedI.setPedido_id(lstPed.get(i).getIdPedido());
                             }
                         }
@@ -267,10 +270,10 @@ public class RespThread extends Thread {
 
                     } else if (msg.equals("adicionar produto") || msg.equals("3")) {
                         //Seta as informações do pedido
-                        long dataHora = Long.parseLong(t.getData() + " " + t.getHora());
-                        Date dt = new Date(dataHora);
-                        Timestamp time = new Timestamp(dt.getTime());
-                        ped.setData(time);                        
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                        Date parsedDate = dateFormat.parse(t.getData() + " " + t.getHora());
+                        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+                        ped.setData(timestamp);
                         ped.setFinalizado(1);
                         ped.setEntregue(0);
                         ped.setCliente_idCliente(cliId);
@@ -285,7 +288,7 @@ public class RespThread extends Thread {
 
                         //Procura o pedido para receber o ID de Pedido e inserir no PedidoItem
                         for (int i = 0; i < lstPed.size(); i++) {
-                            if ((lstPed.get(i).getCliente_idCliente() == cliId) && (lstPed.get(i).getData() == time)) {
+                            if ((lstPed.get(i).getCliente_idCliente() == cliId)/* && (lstPed.get(i).getData() == time)*/) {
                                 pedI.setPedido_id(lstPed.get(i).getIdPedido());
                             }
                         }
@@ -294,6 +297,8 @@ public class RespThread extends Thread {
 
                         //Envia o contador direto para o processo seguinte
                         cntr = 7;
+                        //Chamada do metodo novamente para continuar nos processos
+                        responder(t, b);
 
                     } else {//Caso o cliente escolha uma opção invalida é solicitado outra opção
                         b.enviarMensagem(Integer.toString(cliId), "Opção%20invalida,%20tente%20novamente:");
@@ -319,6 +324,11 @@ public class RespThread extends Thread {
         }
     }
 
+    /**
+     * Faz a conversão necessaria para a quantidade de pedidos
+     * @param s
+     * @return 
+     */
     private int testQuant(String s) {
         try {
             return Integer.parseInt(s);
